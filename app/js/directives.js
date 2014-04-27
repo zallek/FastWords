@@ -55,17 +55,3 @@ angular.module('myApp.directives', [])
         }
     ])
 
-    .directive('zkColorPicker', function() {
-        return {
-            restrict: 'E',
-            scope: {
-                'onChange': '&onChange',
-                'colors': '=colors'
-            },
-            templateUrl: 'directive/colorPicker.html',
-            /*link: function(scope){
-                scope.onChange(scope.value);
-            }*/
-        };
-    });
-

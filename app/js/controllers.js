@@ -32,14 +32,9 @@ angular.module('myApp.controllers', [])
 
     .controller('ColorPickerCtrl', ['$scope', 'CommonLib',
         function($scope, CommonLib) {
-            //RESOURCES
-            $scope.colors = [
-                    {text : "Blue", value:"#92CDDC"},
-                    {text : "Orange", value:"#FFC106"},
-                    {text : "Pink", value:"#FF3399"},
-                    {text : "Green", value:"#2EB90B"}
-                ];
-            $scope.changeTemplate = function(newValue){
-                CommonLib.changecss(newValue);
-            }
+            $scope.templateColor = "#92CDDC";
+            $scope.$watchCollection('templateColor', function() {
+                CommonLib.changecss('.templateColor', 'color', $scope.templateColor);
+                CommonLib.changecss('.zk-completed', 'color', $scope.templateColor);
+            });
         }]);

@@ -7,7 +7,8 @@ angular.module('myApp', [
   'myApp.filters',
   'myApp.services',
   'myApp.directives',
-  'myApp.controllers'
+  'myApp.controllers',
+  'colorpicker.module'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider
@@ -23,5 +24,5 @@ config(['$routeProvider', function($routeProvider) {
           templateUrl: 'partials/mods/falling.html',
           controller: 'FallingCtrl'
       })
-      .otherwise({redirectTo: '/home'});
+      .otherwise({redirectTo: '/mods'});
 }]);

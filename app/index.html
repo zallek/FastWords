@@ -2,6 +2,7 @@
 <html lang="en" ng-app="myApp">
 <head>
     <title>Fast Words</title>
+    <link rel="stylesheet" href="css/colorpicker.css"/>
     <link rel="stylesheet" href="css/app.css"/>
     <meta charset="UTF-8">
 </head>
@@ -33,11 +34,12 @@
             </li>
             <li class="r1 donate"><a href="#">Donate</a></li>
             <li class="r1">
-                <zk-color-picker ng-controller="ColorPickerCtrl"
-                                on-change="changeTemplate(t)"
-                                colors="colors"
-                                class="style-select">
-                </zk-color-picker>
+                Color : <input colorpicker
+                       ng-controller="ColorPickerCtrl"
+                       ng-style="{'color':templateColor}"
+                       class="colorpicker-input"
+                       type="text"
+                       ng-model="templateColor"/>
             </li>
             <li class="r2"><a href="#">Help to translate</a></li>
             <li class="r2"><a href="#">Live a comment</a></li>
@@ -58,5 +60,6 @@
 <script src="js/controllers.js"></script>
 <script src="js/filters.js"></script>
 <script src="js/directives.js"></script>
+<script src="js/bootstrap-colorpicker-module.js"></script>
 </body>
 </html>
