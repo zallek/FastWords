@@ -1,29 +1,62 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" ng-app="myApp">
 <head>
-  <meta charset="utf-8">
-  <title>My AngularJS App</title>
-  <link rel="stylesheet" href="css/app.css"/>
+    <title>Fast Words</title>
+    <link rel="stylesheet" href="css/app.css"/>
+    <meta charset="UTF-8">
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul>
-
-  <div ng-view></div>
-
-  <div>Angular seed app: v<span app-version></span></div>
-
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-  <script src="../bower_components/angular/angular.js"></script>
-  <script src="../bower_components/angular-route/angular-route.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/services.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/filters.js"></script>
-  <script src="js/directives.js"></script>
+<div id="mainContainer">
+    <div id="header">
+        <h1><span class="templateColor">Fast</span> Words</h1>
+    </div>
+    <div id="menu">
+        <ul>
+            <li><a href="#/home">Home</a></li>
+            <li><a href="#">Blog</a></li>
+            <li class="play"><a href="#/mods">START</a></li>
+            <li><a href="#">My Stats</a></li>
+            <li><a href="#">Account</a></li>
+        </ul>
+    </div>
+    <div id="content" ng-view>
+    </div>
+    <div id="footer">
+        <ul>
+            <li class="r1">
+                <div class="style-select">
+                    <select id="languageChooser">
+                        <option value="#92CDDC">English</option>
+                        <option value="#FFC106">French</option>
+                    </select>
+                </div>
+            </li>
+            <li class="r1 donate"><a href="#">Donate</a></li>
+            <li class="r1">
+                <zk-color-picker ng-controller="ColorPickerCtrl"
+                                on-change="changeTemplate(t)"
+                                colors="colors"
+                                class="style-select">
+                </zk-color-picker>
+            </li>
+            <li class="r2"><a href="#">Help to translate</a></li>
+            <li class="r2"><a href="#">Live a comment</a></li>
+            <li class="r2"><a href="#">About</a></li>
+            <li class="copyright">© 2013 FastWords – Nicolas Fortin</li>
+        </ul>
+    </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/fastwords-engine.js"></script>
+<!-- In production use:
+ <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+ -->
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-route/angular-route.js"></script>
+<script src="js/app.js"></script>
+<script src="js/services.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/filters.js"></script>
+<script src="js/directives.js"></script>
 </body>
 </html>

@@ -1,30 +1,184 @@
-/* app css stylesheet */
-
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Helvetica, Arial, Verdana, sans-serif;
+    color: #595959;
 }
 
-.menu:before {
-  content: "[";
+a {
+    text-decoration: none;
 }
 
-.menu:after {
-  content: "]";
+/** Container **/
+
+#mainContainer {
+    width : 800px;
+    margin: auto;
 }
 
-.menu > li {
-  display: inline;
+
+/** Title **/
+
+#header h1 {
+    font-size: 52px;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 40px;
 }
 
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
+
+/** Menu **/
+
+#menu ul {
+    overflow: hidden;
+    list-style: none;
+}
+#menu ul > li {
+    float:left;
+    font-size: 20px;
+    width: 160px;
+    text-align: center;
+    height: 50px;
+    display: block;
+    line-height: 50px;
+}
+#menu ul > li.play {
+    text-transform: uppercase;
+    font-size: 30px;
 }
 
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
+
+/** Panels **/
+
+#content {
+    margin-top: 30px;
+    border-top: 1px solid lightgrey;
+    padding-top: 30px;
+    min-height: 500px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 20px;
+}
+
+#gamePanel {
+    border: 1px solid gray;
+    width: 100%;
+    height: 500px;
+    position:relative;
+    z-index: 0;
+}
+
+#scorePanel {
+    border: 1px solid gray;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: white;
+    z-index: 0;
+}
+
+
+/** Footer **/
+
+#footer {
+    padding-bottom: 30px;
+}
+
+#footer ul {
+    overflow: hidden;
+    list-style: none;
+}
+#footer ul > li {
+    float:left;
+    width: 266px;
+    text-align: center;
+    display: block;
+}
+#footer ul > li.r1 {
+    font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+}
+#footer ul > li.r2 {
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+}
+#footer ul > li .r1.donate {
+    font-size: 20px;
+    font-weight: bold;
+}
+#footer ul > li.copyright {
+    height: 50px;
+    line-height: 50px;
+    font-size: 12px;
+    text-align: center;
+    width: 800px;
+}
+#footer .style-select select{
+    font-size:16px;
+}
+
+
+/** Objets **/
+
+.zk-word {
+    position: absolute;
+    background-color: white;
+}
+
+.zk-completed {
+    color: orange;
+}
+
+.templateColor {
+}
+
+
+/** Select Boxes **/
+
+.style-select {
+    margin-left: auto ;
+    margin-right: auto ;
+    /*width: 100px;*/
+    overflow: hidden;
+    background: url("../img/arrowdown.gif") no-repeat 90% 50%;
+}
+
+.style-select select {
+    padding: 5px 8px;
+    /*width: 100%;*/
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.style-select select:focus {
+    outline: none;
+}
+
+
+/** Mods **/
+
+#mods ul {
+    list-style-type:none;
+    overflow: hidden;
+}
+#mods ul > li {
+    float:left;
+    width: 180px;
+    text-align: center;
+    font-size: 20px;
+    margin: 10px;
+}
+#mods ul > li:hover {
+    font-weight: bold;
+}
+
+#mods .mods-preview {
+    margin-top: 20px;
+    text-align: center;
 }
