@@ -3,42 +3,46 @@
 /* Directives */
 
 
-angular.module('myApp.directives', [])
+angular.module('Fastwords.directives', [])
 
-    .directive('zkFastwords', ['$interval',
-        function($interval) {
+    .directive('zkFastwords', ['$interval', 'Resources',
+        function($interval, Resources) {
             return {
                 restrict: 'E',
                 transclude: true,
                 templateUrl: 'directive/fastwords.html',
                 link: function(scope, element, attrs) {
-                    //attrs.engineMod
-                    //attrs.wordList
+                    var engineMod = attrs.zkEngineMod;
+                    var fastWords;
+                    scope.timeElapsed = 0;
 
-                    //Fast is written in jQuery and need a jQuery selector to be initiate
-                    var fastWords = $("#gamePanel").fastWords({
-                        words : [
-                            {text : "template"},
-                            {text : "lol"},
-                            {text : "undo", delay: 0},
-                            {text : "fight"}
-                        ],
-                        start : true,
-                        scoreChangedCallback : function(newScores) {
-                            scope.wordsCompleted = newScores.wordsCompleted;
-                            scope.wordsCount = newScores.wordsCount;
-                        }
-                    });
+                    if(engineMod == 'catchThemAll'){
+                        Resources.get('WordsList', 'CatchThemAll', function(wordsList){
+                            fastWords = $("#gamePanel").fastWords({
+                                words : wordsList,
+                                start : true,
+                                scoreChangedCallback : function(newScores) {
+                                    scope.wordsCompleted = newScores.wordsCompleted;
+                                    scope.wordsCount = newScores.wordsCount;
+                                    scope.nbErrors = newScores.errors;
+                                    if(newScores.wordsMissed > 0){
+                                        $interval.cancel(timeoutId);
+                                        fastWords.Stop();
+                                    }
+                                }
+                            })
+                        });
+                    }
+
+                    // start the UI update process; save the timeoutId for canceling
+                    var timeoutId = $interval(function() {
+                        scope.timeElapsed++;
+                    }, 1000);
 
                     element.on('$destroy', function() {
                         $interval.cancel(timeoutId);
                         fastWords.Stop();
                     });
-
-                    // start the UI update process; save the timeoutId for canceling
-                    var timeoutId = $interval(function() {
-                        //updateTime(); // update DOM
-                    }, 1000);
                 }
             }
         }

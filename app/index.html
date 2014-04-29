@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="Fastwords">
 <head>
     <title>Fast Words</title>
     <link rel="stylesheet" href="css/colorpicker.css"/>
@@ -14,10 +14,10 @@
     <div id="menu">
         <ul>
             <li><a href="#/home">Home</a></li>
-            <li><a href="#">Blog</a></li>
+            <li><a href="#" class="unavailable">Blog</a></li>
             <li class="play"><a href="#/mods">START</a></li>
-            <li><a href="#">My Stats</a></li>
-            <li><a href="#">Account</a></li>
+            <li><a href="#" class="unavailable">My Stats</a></li>
+            <li><a href="#" class="unavailable">Account</a></li>
         </ul>
     </div>
     <div id="content" ng-view>
@@ -26,9 +26,9 @@
         <ul>
             <li class="r1">
                 <div class="style-select">
-                    <select id="languageChooser">
-                        <option value="#92CDDC">English</option>
-                        <option value="#FFC106">French</option>
+                    <select id="languageChooser" class="unavailable">
+                        <option value="en">English</option>
+                        <option value="fr">French</option>
                     </select>
                 </div>
             </li>
@@ -41,9 +41,9 @@
                        type="text"
                        ng-model="templateColor"/>
             </li>
-            <li class="r2"><a href="#">Help to translate</a></li>
-            <li class="r2"><a href="#">Live a comment</a></li>
-            <li class="r2"><a href="#">About</a></li>
+            <li class="r2"><a href="#" class="unavailable">Help to translate</a></li>
+            <li class="r2"><a href="#" class="unavailable">Live a comment</a></li>
+            <li class="r2"><a href="#" class="unavailable">About</a></li>
             <li class="copyright">© 2013 FastWords – Nicolas Fortin</li>
         </ul>
     </div>
@@ -57,6 +57,8 @@
 <script src="../bower_components/angular-route/angular-route.js"></script>
 <script src="js/app.js"></script>
 <script src="js/services.js"></script>
+<script src="js/libs.js"></script>
+<script src="js/constants.js"></script>
 <script src="js/controllers.js"></script>
 <script src="js/filters.js"></script>
 <script src="js/directives.js"></script>

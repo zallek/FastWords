@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', [])
+angular.module('Fastwords.controllers', [])
 
 
     .controller('HomeCtrl', [function() {
@@ -17,24 +17,17 @@ angular.module('myApp.controllers', [])
             $scope.modPreview = "falling";
         }])
 
-    .controller('FallingCtrl', ['$scope',
+    .controller('EngineCtrl', ['$scope',
         function($scope) {
             //RESOURCES
-            $scope.getWordsList = function() {
-                return [
-                    {textWord : "template"},
-                    {textWord : "lol"},
-                    {textWord : "undo", delay: 2000},
-                    {textWord : "fight"}
-                ];
-            };
+
         }])
 
-    .controller('ColorPickerCtrl', ['$scope', 'CommonLib',
-        function($scope, CommonLib) {
+    .controller('ColorPickerCtrl', ['$scope', 'Libs',
+        function($scope, Libs) {
             $scope.templateColor = "#92CDDC";
             $scope.$watchCollection('templateColor', function() {
-                CommonLib.changecss('.templateColor', 'color', $scope.templateColor);
-                CommonLib.changecss('.zk-completed', 'color', $scope.templateColor);
+                Libs.changecss('.templateColor', 'color', $scope.templateColor);
+                Libs.changecss('.zk-completed', 'color', $scope.templateColor);
             });
         }]);

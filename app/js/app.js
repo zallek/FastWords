@@ -2,12 +2,14 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('myApp', [
+angular.module('Fastwords', [
   'ngRoute',
-  'myApp.filters',
-  'myApp.services',
-  'myApp.directives',
-  'myApp.controllers',
+  'Fastwords.filters',
+  'Fastwords.services',
+  'Fastwords.libs',
+  'Fastwords.constants',
+  'Fastwords.directives',
+  'Fastwords.controllers',
   'colorpicker.module'
 ]).
 config(['$routeProvider', function($routeProvider) {
@@ -22,7 +24,11 @@ config(['$routeProvider', function($routeProvider) {
       })
       .when('/mods/falling', {
           templateUrl: 'partials/mods/falling.html',
-          controller: 'FallingCtrl'
+          controller: 'EngineCtrl'
+      })
+      .when('/mods/catch-them-all', {
+          templateUrl: 'partials/mods/catch-them-all.html',
+          controller: 'EngineCtrl'
       })
       .otherwise({redirectTo: '/mods'});
 }]);

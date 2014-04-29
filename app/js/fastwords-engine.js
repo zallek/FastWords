@@ -44,6 +44,9 @@
             new Word(word);
         });
         wordsToLoad = [];
+        if(errors == null){
+            errors = 0;
+        }
     };
     FastWords.prototype.Pause = function() {
 
@@ -55,6 +58,7 @@
         });
         wordsToLoad = [];
         Word.wordsList = [];
+        errors = null;
     };
     FastWords.prototype.AddWords = function(words) {
         if(words != null){
@@ -79,6 +83,7 @@
     var keyPressElement = $("body");
     var scoreChangedCallback = null;
     var wordsToLoad = [];
+    var errors = null;
 
     function fireScoreChangedEvent(){
         if(scoreChangedCallback != null){
@@ -95,7 +100,8 @@
             scoreChangedCallback({
                 wordsCount : wordsCount,
                 wordsCompleted : wordsCompleted,
-                wordsMissed : wordsMissed
+                wordsMissed : wordsMissed,
+                errors : errors
             });
         }
     }
@@ -112,7 +118,7 @@
 
         //Check each word
         words.every(function(word) {
-            if(word.zkCompleted == false && word.zkCompleted == false) {
+            if(word.zkCompleted == false) {
                 //Each key press math with char to type
                 if(charMatch(String.fromCharCode(event.which), word.text().charAt(word.zkIc), Params.CASE_SENSITIVE)) {
                     if(word == currentWord) {
@@ -141,6 +147,7 @@
                         else {
                             if(word == currentWord) {
                                 word.zkSetIc(0);
+                                errors++;
                             }
                         }
                     }

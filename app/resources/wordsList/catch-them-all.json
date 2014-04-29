@@ -1,0 +1,9 @@
+[
+    {"text" : "template"},
+    {"text" : "lol"},
+    {"text" : "undo", "delay": 0},
+    {"text" : "fight"},
+    {"text" : "toto", "delay": 2000},
+    {"text" : "unbelievable"},
+    {"text" : "amazing", "delay": 1000}
+]

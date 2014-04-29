@@ -1,95 +1,68 @@
-'use strict';
 
 /* Services */
 
 
-// Demonstrate how to register services
-// In this case it is a simple value service.
-angular.module('myApp.services', [])
+angular.module('Fastwords.services', [])
 
-    .value('version', '0.1')
+/*.service('Language', function Language() {
+    var that = this;
+    this.currentLanguage;
+    var languages = [
+        {value : 'en', text: 'anglais'},
+        {value : 'fr', text: 'français'}
+    ];
 
-    .service('CommonLib', function CommonLib() {
+    this.getList = function(){
+        return languages;
+    };
+    this.setLanguage = function(newLanguage){
+        languages.forEach(function(language){
+            if(language.value == newLanguage){
+                that.currentLanguage = language;
+                return;
+            }
+        })
+    }
+    this.setLanguage('en');
+})
 
-        this.changecss = function(theClass,element,value) {
-            //http://www.shawnolson.net/a/503/altering-css-class-attributes-with-javascript.html
-            var cssRules;
+.factory('String', ['$http', '$q', 'Language', function($http, $q, Language){
+    return {
+        get: function(stringId){
+            var deferred = $q.defer(),
+                intermediate = $q.defer(),
+                generic = $http.get('string/' + stringId + '.json'),
+                specific = $http.get('string-' + Language.currentLanguage.value + '/' + stringId + '.json');
 
-            for (var S = 0; S < document.styleSheets.length; S++){
-                try{
-                    document.styleSheets[S].insertRule(theClass+' { '+element+': '+value+'; }',document.styleSheets[S][cssRules].length);
-                }
-                catch(err){
-                    try{
-                        document.styleSheets[S].addRule(theClass,element+': '+value+';');
-                    }
-                    catch(err){
-                        try{
-                            if (document.styleSheets[S]['rules']) {
-                                cssRules = 'rules';
-                            }
-                            else if (document.styleSheets[S]['cssRules']) {
-                                cssRules = 'cssRules';
-                            }
-                            else {
-                                //no rules found... browser unknown
-                            }
+            specific.then(function(data) { intermediate.resolve(data); }, // Success
+                function() { intermediate.resolve({}); });       // Error
 
-                            for (var R = 0; R < document.styleSheets[S][cssRules].length; R++) {
-                                if (document.styleSheets[S][cssRules][R].selectorText == theClass) {
-                                    if(document.styleSheets[S][cssRules][R].style[element]){
-                                        document.styleSheets[S][cssRules][R].style[element] = value;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        catch (err){}
-                    }
-                }
+            $q.all([generic, intermediate.promise]).then(function(results) {
+                deferred.resolve(jQuery.extend(results[0].data, results[1].data));
+            });
+
+            return deferred.promise;
+        }
+    }
+}]);*/
+
+.factory('Resources', ['$http', 'Constants', 'Libs', function($http, Constants, Libs){
+    return {
+        get: function(type, id, success){
+            if(Constants.ResourcesMap[type] == "undefined"){
+                throw Error("Undefined resources. Verify resources map");
+            }
+            else {
+                $http.get(Constants.ResourcesMap[type].Url + '/' + Libs.camelCaseToURL(id) + '.json')
+                    .success(function(data, status, headers, config) {
+                        success(data);
+                    })
+                    .error(function() {
+                        throw Error("Undefined resources type. Verify resources map");
+                    });
             }
         }
-    })
+    }
+}]);
 
-    /*.service('Language', function Language() {
-        var that = this;
-        this.currentLanguage;
-        var languages = [
-            {value : 'en', text: 'anglais'},
-            {value : 'fr', text: 'français'}
-        ];
-
-        this.getList = function(){
-            return languages;
-        };
-        this.setLanguage = function(newLanguage){
-            languages.forEach(function(language){
-                if(language.value == newLanguage){
-                    that.currentLanguage = language;
-                    return;
-                }
-            })
-        }
-        this.setLanguage('en');
-    })
-
-    .factory('String', ['$http', '$q', 'Language', function($http, $q, Language){
-        return {
-            get: function(stringId){
-                var deferred = $q.defer(),
-                    intermediate = $q.defer(),
-                    generic = $http.get('string/' + stringId + '.json'),
-                    specific = $http.get('string-' + Language.currentLanguage.value + '/' + stringId + '.json');
-
-                specific.then(function(data) { intermediate.resolve(data); }, // Success
-                    function() { intermediate.resolve({}); });       // Error
-
-                $q.all([generic, intermediate.promise]).then(function(results) {
-                    deferred.resolve(jQuery.extend(results[0].data, results[1].data));
-                });
-
-                return deferred.promise;
-            }
-        }
-    }]);*/
 
